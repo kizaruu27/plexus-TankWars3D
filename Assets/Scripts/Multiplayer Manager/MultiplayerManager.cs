@@ -4,43 +4,30 @@ using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MultiplayerManager : MonoBehaviourPunCallbacks
 {
     [SerializeField] private GameObject matchmakingUI;
     [SerializeField] private GameObject loadingScreen;
-    [SerializeField] private GameObject waitingScreenUI;
     [SerializeField] private TMP_InputField nicknameInput;
 
-    private bool isJoiningRoom;
+    private bool isJoinRoom;
 
     private void Awake()
     {
-        isJoiningRoom = false;
+        isJoinRoom = false;
         matchmakingUI.SetActive(false);
         loadingScreen.SetActive(true);
-        waitingScreenUI.SetActive(false);
     }
 
     private void Start()
     {
         PhotonNetwork.ConnectUsingSettings();
+        PhotonNetwork.AutomaticallySyncScene = true;
     }
-
-    private void Update()
-    {
-        if (isJoiningRoom)
-        {
-            if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
-            {
-                PhotonNetwork.CurrentRoom.IsOpen = false;
-                PhotonNetwork.LoadLevel("Level");
-            }
-        }
-    }
-
+    
     public override void OnConnectedToMaster()
     {
         PhotonNetwork.JoinLobby();
@@ -54,9 +41,8 @@ public class MultiplayerManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        waitingScreenUI.SetActive(true);
-        isJoiningRoom = true;
         Debug.Log($"Nickname: {PhotonNetwork.NickName}");
+        SceneManager.LoadSceneAsync("WaitingScene", LoadSceneMode.Additive);
     }
 
     public void JoinGame()
