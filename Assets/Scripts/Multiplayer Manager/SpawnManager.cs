@@ -5,8 +5,8 @@ namespace TankWars3D
 {
     public class SpawnManager : MonoBehaviour
     {
-        [SerializeField] private Transform spawnPointMaster;
-        [SerializeField] private Transform spawnPointClient;
+        public Transform spawnPointMaster;
+        public Transform spawnPointClient;
         
         [SerializeField] private GameObject playerPrefab;
     

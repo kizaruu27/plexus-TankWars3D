@@ -9,9 +9,26 @@ namespace TankWars3D
         [SerializeField] private PhotonView view;
         [SerializeField] private InputReader inputReader;
         [SerializeField] private Rigidbody rb;
+        [SerializeField] private PlayerHealth health;
+        [SerializeField] private SpawnManager spawnManager;
 
         [SerializeField] private float tankSpeed = 15f;
         [SerializeField] private float rotationSpeed = 20f;
+
+        private void OnEnable()
+        {
+            health.OnDeathEvent += TankRespawn;
+        }
+
+        private void OnDisable()
+        {
+            health.OnDeathEvent -= TankRespawn;
+        }
+
+        private void Awake()
+        {
+            spawnManager = FindObjectOfType<SpawnManager>();
+        }
 
         private void LateUpdate()
         {
@@ -31,6 +48,14 @@ namespace TankWars3D
             // rotation
             Quaternion TargetRotation = transform.rotation * Quaternion.Euler(Vector3.up * (rotationSpeed * input.x * Time.deltaTime));
             rb.MoveRotation(TargetRotation);
+        }
+
+        void TankRespawn()
+        {
+            if (PhotonNetwork.IsMasterClient)
+                transform.position = spawnManager.spawnPointMaster.position;
+            else
+                transform.position = spawnManager.spawnPointClient.position;
         }
     }
 }

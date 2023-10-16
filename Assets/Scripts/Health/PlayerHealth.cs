@@ -1,3 +1,4 @@
+using System;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,8 @@ namespace TankWars3D
         [SerializeField] private PhotonView view;
 
         [SerializeField] private TakeDamage takeDamage;
+
+        public event Action OnDeathEvent;
 
         private void OnEnable()
         {
@@ -38,8 +41,19 @@ namespace TankWars3D
         }
     
         private void TakeDamage()
+        { 
+            view.RPC("RpcTakeDamage", RpcTarget.All);
+        }
+
+        [PunRPC]
+        void RpcTakeDamage()
         {
             currentHealth -= 50;
+
+            if (currentHealth <= 0)
+            {
+                OnDeathEvent?.Invoke();
+            }
         }
     }
 }

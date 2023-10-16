@@ -926,6 +926,8 @@ MonoBehaviour:
   view: {fileID: 2915258674829266125}
   inputReader: {fileID: 4678956989344016163}
   rb: {fileID: 664741822467759560}
+  health: {fileID: 2421650524603491181}
+  spawnManager: {fileID: 0}
   tankSpeed: 15
   rotationSpeed: 200
 --- !u!114 &2421650524603491181
@@ -957,6 +959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36746737345f3dc4d8f7912e80776313, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: {fileID: 2421650524603491181}
 --- !u!1 &4474096456121911121
 GameObject:
   m_ObjectHideFlags: 0
