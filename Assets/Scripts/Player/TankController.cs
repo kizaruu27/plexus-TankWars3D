@@ -15,7 +15,8 @@ namespace TankWars3D
 
         private void LateUpdate()
         {
-            Move();
+            if (view.IsMine) 
+                Move();
         }
 
         void Move()

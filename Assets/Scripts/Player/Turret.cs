@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -10,10 +11,12 @@ namespace TankWars3D
     {
         public float rotationSpeed = 5.0f;
         [SerializeField] private Transform shootPoint;
+        [SerializeField] private PhotonView view;
 
         private void Update()
         {
-            RotateTurret();
+            if (view.IsMine)
+                RotateTurret();
         }
 
         void RotateTurret()
