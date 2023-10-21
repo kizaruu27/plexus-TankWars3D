@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Photon.Pun;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ namespace TankWars3D
         [SerializeField] private Rigidbody rb;
         [SerializeField] private PlayerHealth health;
         [SerializeField] private SpawnManager spawnManager;
+        [SerializeField] private GameObject tankRenderer;
+        [SerializeField] private GameObject playerCanvas;
 
         [SerializeField] private float tankSpeed = 15f;
         [SerializeField] private float rotationSpeed = 20f;
@@ -53,9 +56,21 @@ namespace TankWars3D
         void TankRespawn()
         {
             if (PhotonNetwork.IsMasterClient)
-                transform.position = spawnManager.spawnPointMaster.position;
+                StartCoroutine(RespawnCoroutine(spawnManager.spawnPointMaster));
             else
-                transform.position = spawnManager.spawnPointClient.position;
+                StartCoroutine(RespawnCoroutine(spawnManager.spawnPointClient));
+        }
+
+        IEnumerator RespawnCoroutine(Transform spawnPosition)
+        {
+            tankRenderer.SetActive(false);
+            playerCanvas.SetActive(false);
+            yield return new WaitForSeconds(3);
+
+            transform.position = spawnPosition.position;
+            health.currentHealth = health.GetMaxHealth();
+            playerCanvas.SetActive(true);
+            tankRenderer.SetActive(true);
         }
     }
 }

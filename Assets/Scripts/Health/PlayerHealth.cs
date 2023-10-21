@@ -1,18 +1,21 @@
 using System;
+using System.Collections;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace TankWars3D
 {
-    public class PlayerHealth : MonoBehaviour
+    public class PlayerHealth : MonoBehaviourPunCallbacks
     {
         [SerializeField] private int maxHealth = 200;
-        [SerializeField] private int currentHealth;
+        public int currentHealth;
         [SerializeField] private Slider healthSlider;
         [SerializeField] private PhotonView view;
 
         [SerializeField] private TakeDamage takeDamage;
+
+        private bool isTakenDamage;
 
         public event Action OnDeathEvent;
 
@@ -39,14 +42,13 @@ namespace TankWars3D
         {
             healthSlider.value = currentHealth;
         }
-    
-        private void TakeDamage()
-        { 
-            view.RPC("RpcTakeDamage", RpcTarget.All);
+
+        public int GetMaxHealth()
+        {
+            return maxHealth;
         }
 
-        [PunRPC]
-        void RpcTakeDamage()
+        private void TakeDamage()
         {
             currentHealth -= 50;
 
