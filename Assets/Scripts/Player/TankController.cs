@@ -19,6 +19,8 @@ namespace TankWars3D
         [SerializeField] private float tankSpeed = 15f;
         [SerializeField] private float rotationSpeed = 20f;
 
+        private bool canMove;
+
         private void OnEnable()
         {
             health.OnDeathEvent += TankRespawn;
@@ -31,6 +33,7 @@ namespace TankWars3D
 
         private void Awake()
         {
+            canMove = true;
             spawnManager = FindObjectOfType<SpawnManager>();
         }
 
@@ -42,16 +45,19 @@ namespace TankWars3D
 
         void Move()
         {
-            // movement
-            Vector3 input = new Vector3();
-            input.z = inputReader.MovementValue.y;
-            input.x = inputReader.MovementValue.x;
-            
-            transform.position += transform.forward * input.z * tankSpeed * Time.deltaTime;
-            
-            // rotation
-            Quaternion TargetRotation = transform.rotation * Quaternion.Euler(Vector3.up * (rotationSpeed * input.x * Time.deltaTime));
-            rb.MoveRotation(TargetRotation);
+            if (canMove)
+            {
+                // movement
+                Vector3 input = new Vector3();
+                input.z = inputReader.MovementValue.y;
+                input.x = inputReader.MovementValue.x;
+                
+                transform.position += transform.forward * input.z * tankSpeed * Time.deltaTime;
+                
+                // rotation
+                Quaternion TargetRotation = transform.rotation * Quaternion.Euler(Vector3.up * (rotationSpeed * input.x * Time.deltaTime));
+                rb.MoveRotation(TargetRotation);
+            }
         }
 
         void TankRespawn()
@@ -66,13 +72,17 @@ namespace TankWars3D
         {
             tankRenderer.SetActive(false);
             playerCanvas.SetActive(false);
-            
+
             if (view.IsMine)
+            {
                 respawnUI.gameObject.SetActive(true);
+            }
             
+            canMove = false;
             yield return new WaitForSeconds(3);
 
             transform.position = spawnPosition.position;
+            canMove = true;
             health.currentHealth = health.GetMaxHealth();
             playerCanvas.SetActive(true);
             tankRenderer.SetActive(true);
