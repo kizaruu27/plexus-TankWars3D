@@ -14,6 +14,7 @@ namespace TankWars3D
         [SerializeField] private SpawnManager spawnManager;
         [SerializeField] private GameObject tankRenderer;
         [SerializeField] private GameObject playerCanvas;
+        [SerializeField] private RespawnUICountdown respawnUI;
 
         [SerializeField] private float tankSpeed = 15f;
         [SerializeField] private float rotationSpeed = 20f;
@@ -65,6 +66,10 @@ namespace TankWars3D
         {
             tankRenderer.SetActive(false);
             playerCanvas.SetActive(false);
+            
+            if (view.IsMine)
+                respawnUI.gameObject.SetActive(true);
+            
             yield return new WaitForSeconds(3);
 
             transform.position = spawnPosition.position;
