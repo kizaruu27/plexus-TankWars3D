@@ -13,7 +13,13 @@ public class WallsBehaviour : MonoBehaviour
     }
 
     [SerializeField] private State wallState;
-    
+    [SerializeField] private int wallHealth;
+
+    private void Start()
+    {
+        wallHealth = 2;
+    }
+
     private void OnTriggerEnter(Collider col)
     {
         if (col.CompareTag("MasterBullet") || col.CompareTag("ClientBullet"))
@@ -23,7 +29,11 @@ public class WallsBehaviour : MonoBehaviour
             switch (wallState)
             {
                 case State.Destructable:
-                    Destroy(gameObject);
+                    wallHealth--;
+                    
+                    if (wallHealth <= 0)
+                        Destroy(gameObject);
+                    
                     break;
                 case State.Undestructable:
                     break;
