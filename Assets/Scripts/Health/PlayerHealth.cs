@@ -25,12 +25,14 @@ namespace TankWars3D
         private void OnEnable()
         {
             takeDamage.OnTakeDamageEvent += TakeDamage;
+            takeDamage.OnTakeDamageOnRocket += RocketDamage;
             tank.OnGetHealthItem += AddHealth;
         }
 
         private void OnDisable()
         {
             takeDamage.OnTakeDamageEvent -= TakeDamage;
+            takeDamage.OnTakeDamageOnRocket -= RocketDamage;
             tank.OnGetHealthItem -= AddHealth;
         }
 
@@ -59,6 +61,19 @@ namespace TankWars3D
             if (canDamage)
             {
                 currentHealth -= 50;
+
+                if (currentHealth <= 0)
+                {
+                    OnDeathEvent?.Invoke();
+                }
+            }
+        }
+
+        void RocketDamage()
+        {
+            if (canDamage)
+            {
+                currentHealth -= 100;
 
                 if (currentHealth <= 0)
                 {

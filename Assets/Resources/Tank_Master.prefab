@@ -545,10 +545,13 @@ MonoBehaviour:
   inputReader: {fileID: 4678956989344016163}
   bulletPrefab: {fileID: 6774456849995664261, guid: 8796f3d5f56580a43a512b632d4bc6c0,
     type: 3}
+  rocketPrefab: {fileID: 6774456849995664261, guid: cef5f48fa95ec9b489e3fff63ff5dd4c,
+    type: 3}
   currentAmunition: 0
   maxAmmuntion: 7
   ammunitionUI: {fileID: 5909780071855362232}
   tank: {fileID: 2511656030350680841}
+  useRocket: 0
 --- !u!1 &2241844297197673015
 GameObject:
   m_ObjectHideFlags: 0
@@ -1770,12 +1773,12 @@ PrefabInstance:
     - target: {fileID: 31905166415616162, guid: a96ab635ff588f54aa300ecf95ebb7e1,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0041045584
+      value: -0.00410459
       objectReference: {fileID: 0}
     - target: {fileID: 31905166415616162, guid: a96ab635ff588f54aa300ecf95ebb7e1,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0018442563
+      value: 0.0018442705
       objectReference: {fileID: 0}
     - target: {fileID: 31905166415616162, guid: a96ab635ff588f54aa300ecf95ebb7e1,
         type: 3}

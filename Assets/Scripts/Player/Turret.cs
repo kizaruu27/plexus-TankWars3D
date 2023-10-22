@@ -15,23 +15,28 @@ namespace TankWars3D
         [SerializeField] private PhotonView view;
         [SerializeField] private InputReader inputReader;
         [SerializeField] private GameObject bulletPrefab;
+        [SerializeField] private GameObject rocketPrefab;
 
         public int currentAmunition;
         public int maxAmmuntion = 7;
         [SerializeField] private TextMeshProUGUI ammunitionUI;
 
         [SerializeField] private TankController tank;
+
+        [SerializeField] private bool useRocket;
         
         private void OnEnable()
         {
             inputReader.OnShootEvent += Shoot;
             tank.OnGetBulletItem += AddBullet;
+            tank.OnGetRocketItem += ChangeBullet;
         }
 
         private void OnDisable()
         {
             inputReader.OnShootEvent -= Shoot;
             tank.OnGetBulletItem -= AddBullet;
+            tank.OnGetRocketItem -= ChangeBullet;
         }
 
         private void Start()
@@ -69,11 +74,19 @@ namespace TankWars3D
         {
             if (view.IsMine)
             {
-                if (currentAmunition <= 0)
-                    return;
+                if (!useRocket)
+                {
+                    if (currentAmunition <= 0)
+                        return;
                 
-                view.RPC("RpcShoot", RpcTarget.All);
-                currentAmunition--;
+                    view.RPC("RpcShoot", RpcTarget.All);
+                    currentAmunition--;
+                }
+                else
+                {
+                    view.RPC("RpcRocketShoot", RpcTarget.All);
+                    useRocket = false;
+                }
             }
         }
 
@@ -83,12 +96,23 @@ namespace TankWars3D
             Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
         }
 
+        [PunRPC]
+        void RpcRocketShoot()
+        {
+            Instantiate(rocketPrefab, shootPoint.position, shootPoint.rotation);
+        }
+
         void AddBullet()
         {
             currentAmunition += 3;
 
             if (currentAmunition >= maxAmmuntion)
                 currentAmunition = maxAmmuntion;
+        }
+
+        void ChangeBullet()
+        {
+            useRocket = true;
         }
     }
 }

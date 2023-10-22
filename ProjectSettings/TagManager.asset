@@ -13,6 +13,8 @@ TagManager:
   - ShieldItem
   - Shield
   - HealthItem
+  - RocketItem
+  - RocketBullet
   layers:
   - Default
   - TransparentFX

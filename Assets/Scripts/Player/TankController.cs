@@ -24,6 +24,7 @@ namespace TankWars3D
         public event Action OnGetBulletItem;
         public event Action OnGetShieldItem;
         public event Action OnGetHealthItem;
+        public event Action OnGetRocketItem;
 
         private bool canMove;
 
@@ -112,6 +113,12 @@ namespace TankWars3D
             if (col.CompareTag("HealthItem"))
             {
                 OnGetHealthItem?.Invoke();
+                Destroy(col.gameObject);
+            }
+            
+            if (col.CompareTag("RocketItem"))
+            {
+                OnGetRocketItem?.Invoke();
                 Destroy(col.gameObject);
             }
         }
