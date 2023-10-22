@@ -14,6 +14,7 @@ public class WallsBehaviour : MonoBehaviour
 
     [SerializeField] private State wallState;
     [SerializeField] private int wallHealth;
+    [SerializeField] private ParticleSystem explosionEffect;
 
     private void Start()
     {
@@ -30,9 +31,12 @@ public class WallsBehaviour : MonoBehaviour
             {
                 case State.Destructable:
                     wallHealth--;
-                    
+
                     if (wallHealth <= 0)
+                    {
+                        Instantiate(explosionEffect, transform.position, Quaternion.identity);
                         Destroy(gameObject);
+                    }
                     
                     break;
                 case State.Undestructable:
