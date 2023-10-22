@@ -18,16 +18,20 @@ namespace TankWars3D
 
         private bool isTakenDamage;
 
+        [SerializeField] private TankController tank;
+
         public event Action OnDeathEvent;
 
         private void OnEnable()
         {
             takeDamage.OnTakeDamageEvent += TakeDamage;
+            tank.OnGetHealthItem += AddHealth;
         }
 
         private void OnDisable()
         {
             takeDamage.OnTakeDamageEvent -= TakeDamage;
+            tank.OnGetHealthItem -= AddHealth;
         }
 
         private void Awake()
@@ -61,6 +65,11 @@ namespace TankWars3D
                     OnDeathEvent?.Invoke();
                 }
             }
+        }
+
+        void AddHealth()
+        {
+            currentHealth = maxHealth;
         }
     }
 }

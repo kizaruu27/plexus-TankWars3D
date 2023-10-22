@@ -12,6 +12,7 @@ TagManager:
   - ItemBullet
   - ShieldItem
   - Shield
+  - HealthItem
   layers:
   - Default
   - TransparentFX
