@@ -14,6 +14,7 @@ namespace TankWars3D
         [SerializeField] private PhotonView view;
 
         [SerializeField] private TakeDamage takeDamage;
+        public bool canDamage;
 
         private bool isTakenDamage;
 
@@ -31,6 +32,7 @@ namespace TankWars3D
 
         private void Awake()
         {
+            canDamage = true;
             currentHealth = maxHealth;
             healthSlider.maxValue = maxHealth;
 
@@ -50,11 +52,14 @@ namespace TankWars3D
 
         private void TakeDamage()
         {
-            currentHealth -= 50;
-
-            if (currentHealth <= 0)
+            if (canDamage)
             {
-                OnDeathEvent?.Invoke();
+                currentHealth -= 50;
+
+                if (currentHealth <= 0)
+                {
+                    OnDeathEvent?.Invoke();
+                }
             }
         }
     }

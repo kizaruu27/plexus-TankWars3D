@@ -22,6 +22,7 @@ namespace TankWars3D
         [SerializeField] private Turret turret;
 
         public event Action OnGetBulletItem;
+        public event Action OnGetShieldItem;
 
         private bool canMove;
 
@@ -98,6 +99,12 @@ namespace TankWars3D
             if (col.CompareTag("ItemBullet"))
             {
                 OnGetBulletItem?.Invoke();
+                Destroy(col.gameObject);
+            }
+
+            if (col.CompareTag("ShieldItem"))
+            {
+                OnGetShieldItem?.Invoke();
                 Destroy(col.gameObject);
             }
         }
