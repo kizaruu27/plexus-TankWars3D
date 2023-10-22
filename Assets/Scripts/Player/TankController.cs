@@ -21,6 +21,8 @@ namespace TankWars3D
 
         [SerializeField] private Turret turret;
 
+        public event Action OnGetBulletItem;
+
         private bool canMove;
 
         private void OnEnable()
@@ -89,6 +91,15 @@ namespace TankWars3D
             health.currentHealth = health.GetMaxHealth();
             playerCanvas.SetActive(true);
             tankRenderer.SetActive(true);
+        }
+
+        private void OnTriggerEnter(Collider col)
+        {
+            if (col.CompareTag("ItemBullet"))
+            {
+                OnGetBulletItem?.Invoke();
+                Destroy(col.gameObject);
+            }
         }
     }
 }

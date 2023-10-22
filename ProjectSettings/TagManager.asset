@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - MasterBullet
   - ClientBullet
+  - ItemBullet
   layers:
   - Default
   - TransparentFX

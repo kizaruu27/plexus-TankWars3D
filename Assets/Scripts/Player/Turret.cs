@@ -19,14 +19,19 @@ namespace TankWars3D
         public int currentAmunition;
         public int maxAmmuntion = 7;
         [SerializeField] private TextMeshProUGUI ammunitionUI;
+
+        [SerializeField] private TankController tank;
+        
         private void OnEnable()
         {
             inputReader.OnShootEvent += Shoot;
+            tank.OnGetBulletItem += AddBullet;
         }
 
         private void OnDisable()
         {
             inputReader.OnShootEvent -= Shoot;
+            tank.OnGetBulletItem -= AddBullet;
         }
 
         private void Start()
@@ -76,6 +81,14 @@ namespace TankWars3D
         void RpcShoot()
         { 
             Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
+        }
+
+        void AddBullet()
+        {
+            currentAmunition += 3;
+
+            if (currentAmunition >= maxAmmuntion)
+                currentAmunition = maxAmmuntion;
         }
     }
 }

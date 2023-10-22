@@ -548,6 +548,7 @@ MonoBehaviour:
   currentAmunition: 0
   maxAmmuntion: 7
   ammunitionUI: {fileID: 2491157769487080362}
+  tank: {fileID: 2511656030350680841}
 --- !u!1 &2241844297197673015
 GameObject:
   m_ObjectHideFlags: 0
@@ -1749,12 +1750,12 @@ PrefabInstance:
     - target: {fileID: 31905166415616162, guid: a96ab635ff588f54aa300ecf95ebb7e1,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0041045584
+      value: -0.00410459
       objectReference: {fileID: 0}
     - target: {fileID: 31905166415616162, guid: a96ab635ff588f54aa300ecf95ebb7e1,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0018442563
+      value: 0.0018442705
       objectReference: {fileID: 0}
     - target: {fileID: 31905166415616162, guid: a96ab635ff588f54aa300ecf95ebb7e1,
         type: 3}
