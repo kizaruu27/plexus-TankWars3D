@@ -10,7 +10,7 @@ public class ItemBehaviour : MonoBehaviour
 
     void Start()
     {
-        // Destroy(gameObject, destroyTime);
+        Destroy(gameObject, destroyTime);
     }
 
     void Update()
