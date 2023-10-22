@@ -20,6 +20,7 @@ namespace TankWars3D
         [SerializeField] private float rotationSpeed = 20f;
 
         [SerializeField] private Turret turret;
+        [SerializeField] private ParticleSystem explosionEffect;
 
         public event Action OnGetBulletItem;
         public event Action OnGetShieldItem;
@@ -77,6 +78,7 @@ namespace TankWars3D
 
         IEnumerator RespawnCoroutine(Transform spawnPosition)
         {
+            Instantiate(explosionEffect, transform.position, Quaternion.identity);
             tankRenderer.SetActive(false);
             playerCanvas.SetActive(false);
 

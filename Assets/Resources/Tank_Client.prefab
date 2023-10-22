@@ -1432,6 +1432,7 @@ MonoBehaviour:
   tankSpeed: 15
   rotationSpeed: 200
   turret: {fileID: 3990668251704873308}
+  explosionEffect: {fileID: 19874418, guid: ee49a9a8678ecf8468eb488e1ac8d42b, type: 3}
 --- !u!114 &2421650524603491181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1773,12 +1774,12 @@ PrefabInstance:
     - target: {fileID: 31905166415616162, guid: a96ab635ff588f54aa300ecf95ebb7e1,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0041045584
+      value: -0.00410459
       objectReference: {fileID: 0}
     - target: {fileID: 31905166415616162, guid: a96ab635ff588f54aa300ecf95ebb7e1,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0018442563
+      value: 0.0018442705
       objectReference: {fileID: 0}
     - target: {fileID: 31905166415616162, guid: a96ab635ff588f54aa300ecf95ebb7e1,
         type: 3}
