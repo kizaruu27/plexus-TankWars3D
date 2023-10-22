@@ -19,6 +19,8 @@ namespace TankWars3D
         [SerializeField] private float tankSpeed = 15f;
         [SerializeField] private float rotationSpeed = 20f;
 
+        [SerializeField] private Turret turret;
+
         private bool canMove;
 
         private void OnEnable()
@@ -82,6 +84,7 @@ namespace TankWars3D
             yield return new WaitForSeconds(3);
 
             transform.position = spawnPosition.position;
+            turret.currentAmunition = turret.maxAmmuntion;
             canMove = true;
             health.currentHealth = health.GetMaxHealth();
             playerCanvas.SetActive(true);

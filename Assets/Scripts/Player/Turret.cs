@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -15,6 +16,9 @@ namespace TankWars3D
         [SerializeField] private InputReader inputReader;
         [SerializeField] private GameObject bulletPrefab;
 
+        public int currentAmunition;
+        public int maxAmmuntion = 7;
+        [SerializeField] private TextMeshProUGUI ammunitionUI;
         private void OnEnable()
         {
             inputReader.OnShootEvent += Shoot;
@@ -25,9 +29,17 @@ namespace TankWars3D
             inputReader.OnShootEvent -= Shoot;
         }
 
+        private void Start()
+        {
+            currentAmunition = maxAmmuntion;
+        }
+
         private void Update()
         {
             RotateTurret();
+            
+            if (view.IsMine)
+                ammunitionUI.text = $"{currentAmunition} / {maxAmmuntion}";
         }
 
         void RotateTurret()
@@ -51,7 +63,13 @@ namespace TankWars3D
         void Shoot()
         {
             if (view.IsMine)
+            {
+                if (currentAmunition <= 0)
+                    return;
+                
                 view.RPC("RpcShoot", RpcTarget.All);
+                currentAmunition--;
+            }
         }
 
         [PunRPC]
