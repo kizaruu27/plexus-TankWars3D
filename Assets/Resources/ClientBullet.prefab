@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpeed: 15
   bulletLifeTime: 8
+  bulletExplosion: {fileID: 19807510, guid: 89e78efe92dfe5a42837b392cdb0bf9e, type: 3}
 --- !u!65 &4227000817140942908
 BoxCollider:
   m_ObjectHideFlags: 0

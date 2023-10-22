@@ -7,6 +7,7 @@ namespace TankWars3D
     {
         [SerializeField] private float bulletSpeed = 5f;
         [SerializeField] private float bulletLifeTime = 8f;
+        [SerializeField] private ParticleSystem bulletExplosion;
 
         private void Start()
         {
@@ -16,6 +17,11 @@ namespace TankWars3D
         private void Update()
         {
             transform.Translate(Vector3.forward * bulletSpeed * Time.deltaTime);
+        }
+
+        private void OnDestroy()
+        {
+            Instantiate(bulletExplosion, transform.position, Quaternion.identity);
         }
     }
 }
