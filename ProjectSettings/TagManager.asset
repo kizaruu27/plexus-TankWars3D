@@ -7,6 +7,8 @@ TagManager:
   - MultiplayerCamera
   - LocalPlayer
   - Bullet
+  - MasterBullet
+  - ClientBullet
   layers:
   - Default
   - TransparentFX

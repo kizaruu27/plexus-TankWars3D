@@ -1,5 +1,6 @@
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace TankWars3D
 {
@@ -8,14 +9,19 @@ namespace TankWars3D
         public Transform spawnPointMaster;
         public Transform spawnPointClient;
         
-        [SerializeField] private GameObject playerPrefab;
+        [SerializeField] private GameObject masterPrefab;
+        [SerializeField] private GameObject clientPrefab;
     
         void Start()
         {
             if (PhotonNetwork.IsMasterClient)
-                PhotonNetwork.Instantiate(playerPrefab.name, spawnPointMaster.position, spawnPointMaster.rotation);
+            {
+                PhotonNetwork.Instantiate(masterPrefab.name, spawnPointMaster.position, spawnPointMaster.rotation);
+            }
             else
-                PhotonNetwork.Instantiate(playerPrefab.name, spawnPointClient.position, spawnPointClient.rotation);
+            {
+                PhotonNetwork.Instantiate(clientPrefab.name, spawnPointClient.position, spawnPointClient.rotation);
+            }
         }
     }
 }

@@ -7,10 +7,11 @@ namespace TankWars3D
     public class TakeDamage : MonoBehaviour
     {
         public event Action OnTakeDamageEvent;
+        [SerializeField] private string targetTag;
         
         private void OnTriggerEnter(Collider col)
         {
-            if (col.CompareTag("Bullet"))
+            if (col.CompareTag(targetTag))
             {
                 OnTakeDamageEvent?.Invoke();
                 Destroy(col.gameObject);

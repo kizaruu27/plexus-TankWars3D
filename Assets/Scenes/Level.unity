@@ -291,7 +291,7 @@ GameObject:
   - component: {fileID: 299550344}
   - component: {fileID: 299550345}
   m_Layer: 0
-  m_Name: Player1 Base
+  m_Name: Master_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -404,6 +404,7 @@ MonoBehaviour:
   healthSlider: {fileID: 938793881}
   gameOverUI: {fileID: 1598293872}
   winText: {fileID: 931906693}
+  targetTag: ClientBullet
 --- !u!54 &299550344
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1682,7 +1683,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPointMaster: {fileID: 568479984}
   spawnPointClient: {fileID: 567466033}
-  playerPrefab: {fileID: 4153757330251708148, guid: fe741c6989658474a9f9bd6a24a195fe,
+  masterPrefab: {fileID: 4153757330251708148, guid: fe741c6989658474a9f9bd6a24a195fe,
+    type: 3}
+  clientPrefab: {fileID: 4153757330251708148, guid: 339e05ba0ef7fb7429996663eae5d620,
     type: 3}
 --- !u!1 &1376595157
 GameObject:
@@ -2154,7 +2157,7 @@ GameObject:
   - component: {fileID: 1627085980}
   - component: {fileID: 1627085979}
   m_Layer: 0
-  m_Name: Player2 Base
+  m_Name: Client Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2226,6 +2229,7 @@ MonoBehaviour:
   healthSlider: {fileID: 1850777396}
   gameOverUI: {fileID: 1598293872}
   winText: {fileID: 931906693}
+  targetTag: MasterBullet
 --- !u!65 &1627085982
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -24,6 +24,7 @@ namespace TankWars3D
         [SerializeField] private Slider healthSlider;
         [SerializeField] private GameObject gameOverUI;
         [SerializeField] private TextMeshProUGUI winText;
+        [SerializeField] private string targetTag;
 
         private void Awake()
         {
@@ -38,7 +39,7 @@ namespace TankWars3D
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("Bullet"))
+            if (other.CompareTag(targetTag))
             {
                 TakeDamage();
                 Destroy(other.gameObject);
