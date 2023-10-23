@@ -79,6 +79,7 @@ namespace TankWars3D
         IEnumerator RespawnCoroutine(Transform spawnPosition)
         {
             Instantiate(explosionEffect, transform.position, Quaternion.identity);
+            AudioManager.instance.PlayAudioExplosion();
             tankRenderer.SetActive(false);
             playerCanvas.SetActive(false);
 

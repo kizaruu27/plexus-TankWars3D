@@ -22,6 +22,7 @@ namespace TankWars3D
         private void OnDestroy()
         {
             Instantiate(bulletExplosion, transform.position, Quaternion.identity);
+            AudioManager.instance.PlayAudioExplosion();
         }
     }
 }

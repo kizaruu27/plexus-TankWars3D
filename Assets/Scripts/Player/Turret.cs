@@ -94,12 +94,14 @@ namespace TankWars3D
         void RpcShoot()
         { 
             Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
+            AudioManager.instance.PlayAudioShoot();
         }
 
         [PunRPC]
         void RpcRocketShoot()
         {
             Instantiate(rocketPrefab, shootPoint.position, shootPoint.rotation);
+            AudioManager.instance.PlayAudioShoot();
         }
 
         void AddBullet()
