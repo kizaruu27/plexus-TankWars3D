@@ -104,10 +104,7 @@ namespace TankWars3D
 
         void AddBullet()
         {
-            currentAmunition += 3;
-
-            if (currentAmunition >= maxAmmuntion)
-                currentAmunition = maxAmmuntion;
+            currentAmunition = maxAmmuntion;
         }
 
         void ChangeBullet()
