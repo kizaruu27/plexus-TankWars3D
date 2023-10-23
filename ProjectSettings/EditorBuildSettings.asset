@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MatchmakingMenu.unity
     guid: 80cae059ba879aa4294a99dfa74215d2
   - enabled: 1
-    path: Assets/Scenes/WaitingScene.unity
-    guid: cad832234f654774da7f2d54cb238875
-  - enabled: 1
     path: Assets/Scenes/Level.unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects:

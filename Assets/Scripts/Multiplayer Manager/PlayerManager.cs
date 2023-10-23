@@ -30,7 +30,11 @@ public class PlayerManager : MonoBehaviourPunCallbacks
 
     public void QuitMatch()
     {
-        PhotonNetwork.Disconnect();
+        PhotonNetwork.LeaveRoom();
+    }
+
+    public override void OnLeftRoom()
+    {
         SceneManager.LoadScene("MatchmakingMenu");
     }
 }
