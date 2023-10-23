@@ -552,6 +552,7 @@ MonoBehaviour:
   ammunitionUI: {fileID: 2491157769487080362}
   tank: {fileID: 2511656030350680841}
   useRocket: 0
+  rocketIcon: {fileID: 1278601034944715278}
 --- !u!1 &2241844297197673015
 GameObject:
   m_ObjectHideFlags: 0
@@ -1794,12 +1795,12 @@ PrefabInstance:
     - target: {fileID: 31905166415616162, guid: a96ab635ff588f54aa300ecf95ebb7e1,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0041045584
+      value: -0.00410459
       objectReference: {fileID: 0}
     - target: {fileID: 31905166415616162, guid: a96ab635ff588f54aa300ecf95ebb7e1,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0018442563
+      value: 0.0018442705
       objectReference: {fileID: 0}
     - target: {fileID: 31905166415616162, guid: a96ab635ff588f54aa300ecf95ebb7e1,
         type: 3}
@@ -2052,6 +2053,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ca5bf9b7f879964f80609cffdd8c384, type: 3}
+--- !u!1 &1278601034944715278 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 137358475902005732, guid: 3ca5bf9b7f879964f80609cffdd8c384,
+    type: 3}
+  m_PrefabInstance: {fileID: 1178111400461249514}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1655618659909829035 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 477538196100196929, guid: 3ca5bf9b7f879964f80609cffdd8c384,

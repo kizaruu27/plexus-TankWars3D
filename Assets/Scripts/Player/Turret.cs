@@ -24,6 +24,7 @@ namespace TankWars3D
         [SerializeField] private TankController tank;
 
         [SerializeField] private bool useRocket;
+        [SerializeField] private GameObject rocketIcon;
         
         private void OnEnable()
         {
@@ -85,6 +86,7 @@ namespace TankWars3D
                 else
                 {
                     view.RPC("RpcRocketShoot", RpcTarget.All);
+                    rocketIcon.SetActive(false);
                     useRocket = false;
                 }
             }
@@ -111,6 +113,7 @@ namespace TankWars3D
 
         void ChangeBullet()
         {
+            rocketIcon.SetActive(true);
             useRocket = true;
         }
     }
