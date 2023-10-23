@@ -63,7 +63,7 @@ namespace TankWars3D
                 transform.position += transform.forward * input.z * tankSpeed * Time.deltaTime;
                 
                 // rotation
-                Quaternion TargetRotation = transform.rotation * Quaternion.Euler(Vector3.up * (rotationSpeed * input.x * Time.deltaTime));
+                Quaternion TargetRotation = transform.rotation * Quaternion.Euler(Vector3.up * (rotationSpeed * input.x * Time.deltaTime)).normalized;
                 rb.MoveRotation(TargetRotation);
             }
         }

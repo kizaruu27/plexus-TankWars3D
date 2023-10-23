@@ -1,4 +1,5 @@
 using Photon.Pun;
+using Photon.Realtime;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,20 +11,18 @@ namespace TankWars3D
         [SerializeField] private GameObject matchmakingUI;
         [SerializeField] private GameObject loadingScreen;
         [SerializeField] private TMP_InputField nicknameInput;
+        [SerializeField] private GameObject waitingUI;
     
         private bool isJoinRoom;
     
         private void Awake()
         {
+            PhotonNetwork.ConnectUsingSettings();
+            PhotonNetwork.AutomaticallySyncScene = true;
+            
             isJoinRoom = false;
             matchmakingUI.SetActive(false);
             loadingScreen.SetActive(true);
-        }
-    
-        private void Start()
-        {
-            PhotonNetwork.ConnectUsingSettings();
-            PhotonNetwork.AutomaticallySyncScene = true;
         }
         
         public override void OnConnectedToMaster()
@@ -40,7 +39,8 @@ namespace TankWars3D
         public override void OnJoinedRoom()
         {
             Debug.Log($"Nickname: {PhotonNetwork.NickName}");
-            SceneManager.LoadSceneAsync("WaitingScene", LoadSceneMode.Additive);
+            waitingUI.SetActive(true);
+            // SceneManager.LoadSceneAsync("WaitingScene", LoadSceneMode.Additive);
         }
     
         public void JoinGame()

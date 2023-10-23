@@ -15,7 +15,7 @@ namespace TankWars3D
         {
             yield return new WaitForSeconds(1);
 
-            if (PhotonNetwork.CurrentRoom.PlayerCount > 1)
+            if (PhotonNetwork.CurrentRoom.PlayerCount == 2)
             {
                 yield return new WaitForSeconds(2);
                 PhotonNetwork.CurrentRoom.IsOpen = false;
